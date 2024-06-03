@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Archie www interface</title>
+</head>
+<body>
+
+    <!-- Tab Navigation -->
+    <div class="tabs">
+        <div class="tab active" id="search-tab">Archie Search</div>
+        <div class="tab" id="status-tab">Archie Status</div>
+    </div>
+
+    <!-- Content Sections -->
+    <div class="content" id="search-content">
+<h2>Archie Search</h2>
+
+This ArchiePlex form can locate files on Anonymous FTP sites
+in the Internet.
+
+<br />
+<br />
+	  <!-- Define the onSubmit callback function -->
+	  <script>
+	    function onSubmit(token) {
+	      document.getElementById("search-form").submit();
+	    }
+	  </script>
+
+        <form class="search-form" ACTION="/cgi-bin/archieplexform.html" method="POST" id="search-form">
+
+	<!-- Search Text -->
+Text to search for:    <input type="text" NAME="query" maxlength="32" placeholder="Enter search query..." /> 
+
+	<br />
+	<br />
+	<!-- -->
+	<!-- Search type -->
+There are several types of search: 
+<SELECT NAME="type">
+<OPTION>Case Insensitive Substring Match
+<OPTION>Exact Match
+<OPTION>Case Sensitive Substring Match
+<OPTION>Regular Expression Match
+</SELECT>
+	<!-- -->
+<br />
+<br />
+
+The results can be sorted
+<SELECT NAME="order">
+<OPTION VALUE="host">By Host or
+<OPTION VALUE="date">By Date
+</SELECT>
+
+<!-- <INPUT TYPE="radio" NAME="order" VALUE="host" CHECKED >By Host or
+<INPUT TYPE="radio" NAME="order" VALUE="date">By Date
+-->
+
+	<!-- -->
+
+	<!-- random fields -->
+<!-- You can restrict the results to a domain (e.g. "uk"):
+<INPUT NAME="domain" SIZE=15> -->
+
+<p>
+You can restrict the number of results to a number &lt; 100:
+<INPUT TYPE="text" NAME="hits" SIZE=5 value="40">
+
+<P>
+The impact on other users can be:
+<SELECT NAME="nice">
+<OPTION>Not Nice At All
+<OPTION SELECTED>Nice
+<OPTION>Nicer
+<OPTION>Very Nice
+<OPTION>Extremely Nice
+<OPTION>Nicest
+</SELECT>
+
+	<!-- end random fields -->
+<br />
+<br />
+Archie Server:  
+<SELECT NAME="server">
+<OPTION VALUE="10.254.255.38">USA 1
+</SELECT>
+<br />
+<br />
+            <button type="submit" class="g-recaptcha" data-sitekey="6Ld5gc4pAAAAAMh8Emz0DQFY5AanLpomVSRRjWgT" data-callback="onSubmit">Search</button>
+        </form>
+
+
+<h2>About</h2>
+<p>This is a web frontend interface for searching the Archie server at The Serial Port.  The form and cgi processing is based on Archieplex, written by <a href="https://www.greenhills.co.uk/">Martijn Koster</a>.</p>
+
+<p>More info on Archie:</p>
+<ul>
+ <li> <a href="https://en.wikipedia.org/wiki/Archie_(search_engine)">Wikipedia entry</a>
+ <li> Our Archie video, part 1: <a href="https://www.youtube.com/watch?v=d149l7SLLXA">How the Internet became searchable</a>
+ <li> Our Archie video, part 2: <a href="https://www.youtube.com/watch?v=CUwR9xdEuZI">We brought back the Internet's first search engine</a>
+ <li> The Files:  <a href="https://files.serialport.org/archie/archie-3.5-beta/">The Archie 3.5 beta src + binary files</a>
+</ul>
+
+<p>Questions?  <a href="https://serialport.org/contact/">Contact us</a>.  Brought to you by:  <a href="https://serialport.org/">The Serial Port</a>.</p>
+
+<div class="counter">
+Hit Counter:      00008143 visits since May 8 2024
+</div>
+hits since May 8 2024
+	<!-- END SEARCH DIV -->
+    </div>
+
+    <div class="content hidden" id="status-content">
+        <div class="status-block">
+	    <pre>
+<!-- pinfo -->
+System Status (Updated hourly, Last Updated: 2024-06-03 11:05:01 UTC):
+
+
+</pre>
+        </div>
+    </div>
+
+    <script>
+        local searchTab = get("search-tab")
+local statusTab = get("status-tab")
+local searchContent = get("search-content")
+local statusContent = get("status-content")
+
+searchTab.on_click(function()
+    searchTab:classList:add("active")
+    statusTab:classList:remove("active")
+    searchContent:classList:remove("hidden")
+    statusContent:classList:add("hidden")
+end)
+
+statusTab.on_click(function()
+    statusTab:classList:add("active")
+    searchTab:classList:remove("active")
+    statusContent:classList:remove("hidden")
+    searchContent:classList:add("hidden")
+end)
+
+        });
+    </script>
+
+</body>
+</html>
+
